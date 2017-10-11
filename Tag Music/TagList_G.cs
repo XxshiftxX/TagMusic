@@ -8,7 +8,10 @@ namespace Tag_Music
 {
     class TagList
     {
-
+        public int this[int i]
+        {
+            get { return i; }
+        }
     }
 
     class PlayList
