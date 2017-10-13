@@ -17,30 +17,46 @@ using CSCore.SoundOut;
 
 using System.IO;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace Tag_Music
 {
-    public partial class Form1 : Form
+    public partial class MusicTextbox : Form
     {
         MMDevice device;
         ISoundOut soundOut = null;
         IWaveSource soundSource = null;
 
-        string[] Musics;
+        BindingList<string> nowPlayingMusics;
         int nowPlayingIndex = 0;
 
-        public Form1()
+        BindingList<string> newTag = new BindingList<string>
+        {
+            @"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3",
+            @"D:\Music\V3\MKDR feat. [하츠네 미쿠] Umi Kun Cover (DECO   27).mp3"
+        };
+
+        BindingList<string> newTag2 = new BindingList<string>
+        {
+            @"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3"
+        };
+
+        public MusicTextbox()
         {
             InitializeComponent();
 
             device = new MMDeviceEnumerator().EnumAudioEndpoints(DataFlow.Render, DeviceState.Active)[0];
 
-            Musics = new string[]{
+            nowPlayingMusics = new BindingList<string>
+            {
                 @"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3",
                 @"D:\Music\V3\Manic   Luna feat.오토마치 우나 & 라나.mp3",
-                @"D:\Music\V3\PinocchioP - I'm glad you're evil too   ピノキオピー - きみも悪い人でよかった.mp3" };
+                @"D:\Music\V3\PinocchioP - I'm glad you're evil too   ピノキオピー - きみも悪い人でよかった.mp3"
+            };
 
-            Open(Musics[nowPlayingIndex]);
+            Open(nowPlayingMusics[nowPlayingIndex]);
+
+            MusicList.DataSource = nowPlayingMusics;
         }
 
         private void CleanupPlayback()
@@ -67,11 +83,43 @@ namespace Tag_Music
             soundOut.Initialize(soundSource);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void AddTagToList(params BindingList<string>[] tags)
         {
+            foreach(BindingList<string> item in tags)
+            {
+                BindingList<string> temp = new BindingList<string>();
+                foreach (string jtem in nowPlayingMusics.Union(item))
+                {
+                    temp.Add(jtem);
+                }
+                nowPlayingMusics = temp;
+            }
+        }
 
+        private void DeleteTagToList(params BindingList<string>[] tags)
+        {
+            foreach (BindingList<string> item in tags)
+            {
+                BindingList<string> temp = new BindingList<string>();
+                foreach (string jtem in nowPlayingMusics.Except(item))
+                {
+                    string add = temp.AddNew();
+                    add = jtem;
+                }
+                foreach(string jtem in temp)
+                {
+                    string add = nowPlayingMusics.AddNew();
+                    add = jtem;
+                }
+            }
         }
         
+        void listOfParts_AddingNew(object sender, AddingNewEventArgs e)
+        {
+            e.NewObject = "hi";
+
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             soundOut.Stop();
@@ -82,12 +130,12 @@ namespace Tag_Music
         {
             if (soundOut.PlaybackState == PlaybackState.Paused || soundOut.PlaybackState == PlaybackState.Stopped)
             {
-                button1.Text = "Pause";
+                Play.Text = "Pause";
                 soundOut.Play();
             }
             else
             {
-                button1.Text = "Play";
+                Play.Text = "Play";
                 soundOut.Pause();
             }
         }
@@ -95,18 +143,28 @@ namespace Tag_Music
         private void button2_Click(object sender, EventArgs e)
         {
             nowPlayingIndex++;
-            if (nowPlayingIndex >= Musics.Length)
+            if (nowPlayingIndex >= nowPlayingMusics.Count)
                 nowPlayingIndex = 0;
 
             if (soundOut.PlaybackState == PlaybackState.Playing)
             {
-                Open(Musics[nowPlayingIndex]);
+                Open(nowPlayingMusics[nowPlayingIndex]);
                 soundOut.Play();
             }
             else
             {
-                Open(Musics[nowPlayingIndex]);
+                Open(nowPlayingMusics[nowPlayingIndex]);
             }
+        }
+
+        private void Test_Click(object sender, EventArgs e)
+        {
+            AddTagToList(newTag);
+        }
+
+        private void Test2_Click(object sender, EventArgs e)
+        {
+            DeleteTagToList(newTag2);
         }
     }
 }

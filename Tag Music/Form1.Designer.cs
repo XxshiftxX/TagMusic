@@ -1,6 +1,6 @@
 ﻿namespace Tag_Music
 {
-    partial class Form1
+    partial class MusicTextbox
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -28,52 +28,115 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.SongName = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Play = new System.Windows.Forms.Button();
+            this.Next = new System.Windows.Forms.Button();
+            this.MusicList = new System.Windows.Forms.ListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SubmitMusic = new System.Windows.Forms.Button();
+            this.SubmitTag = new System.Windows.Forms.Button();
+            this.TagTextbox = new System.Windows.Forms.TextBox();
+            this.Test = new System.Windows.Forms.Button();
+            this.Test2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // Play
             // 
-            this.button1.Location = new System.Drawing.Point(24, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Play";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Play.Location = new System.Drawing.Point(24, 202);
+            this.Play.Name = "Play";
+            this.Play.Size = new System.Drawing.Size(75, 23);
+            this.Play.TabIndex = 0;
+            this.Play.Text = "Play";
+            this.Play.UseVisualStyleBackColor = true;
+            this.Play.Click += new System.EventHandler(this.button1_Click);
             // 
-            // SongName
+            // Next
             // 
-            this.SongName.AutoSize = true;
-            this.SongName.Location = new System.Drawing.Point(201, 9);
-            this.SongName.Name = "SongName";
-            this.SongName.Size = new System.Drawing.Size(38, 12);
-            this.SongName.TabIndex = 1;
-            this.SongName.Text = "label1";
+            this.Next.Location = new System.Drawing.Point(105, 202);
+            this.Next.Name = "Next";
+            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.TabIndex = 2;
+            this.Next.Text = "Next";
+            this.Next.UseVisualStyleBackColor = true;
+            this.Next.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button2
+            // MusicList
             // 
-            this.button2.Location = new System.Drawing.Point(105, 226);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Next";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.MusicList.FormattingEnabled = true;
+            this.MusicList.ItemHeight = 12;
+            this.MusicList.Location = new System.Drawing.Point(24, 12);
+            this.MusicList.Name = "MusicList";
+            this.MusicList.Size = new System.Drawing.Size(156, 184);
+            this.MusicList.TabIndex = 3;
             // 
-            // Form1
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(24, 258);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(330, 21);
+            this.textBox1.TabIndex = 4;
+            // 
+            // SubmitMusic
+            // 
+            this.SubmitMusic.Location = new System.Drawing.Point(374, 258);
+            this.SubmitMusic.Name = "SubmitMusic";
+            this.SubmitMusic.Size = new System.Drawing.Size(75, 23);
+            this.SubmitMusic.TabIndex = 5;
+            this.SubmitMusic.Text = "Submit";
+            this.SubmitMusic.UseVisualStyleBackColor = true;
+            // 
+            // SubmitTag
+            // 
+            this.SubmitTag.Location = new System.Drawing.Point(374, 231);
+            this.SubmitTag.Name = "SubmitTag";
+            this.SubmitTag.Size = new System.Drawing.Size(75, 23);
+            this.SubmitTag.TabIndex = 7;
+            this.SubmitTag.Text = "Submit";
+            this.SubmitTag.UseVisualStyleBackColor = true;
+            // 
+            // TagTextbox
+            // 
+            this.TagTextbox.Location = new System.Drawing.Point(24, 231);
+            this.TagTextbox.Name = "TagTextbox";
+            this.TagTextbox.Size = new System.Drawing.Size(330, 21);
+            this.TagTextbox.TabIndex = 6;
+            // 
+            // Test
+            // 
+            this.Test.Location = new System.Drawing.Point(374, 12);
+            this.Test.Name = "Test";
+            this.Test.Size = new System.Drawing.Size(75, 23);
+            this.Test.TabIndex = 8;
+            this.Test.Text = "button1";
+            this.Test.UseVisualStyleBackColor = true;
+            this.Test.Click += new System.EventHandler(this.Test_Click);
+            // 
+            // Test2
+            // 
+            this.Test2.Location = new System.Drawing.Point(374, 41);
+            this.Test2.Name = "Test2";
+            this.Test2.Size = new System.Drawing.Size(75, 23);
+            this.Test2.TabIndex = 9;
+            this.Test2.Text = "button1";
+            this.Test2.UseVisualStyleBackColor = true;
+            this.Test2.Click += new System.EventHandler(this.Test2_Click);
+            // 
+            // MusicTextbox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 261);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.SongName);
-            this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.ClientSize = new System.Drawing.Size(461, 296);
+            this.Controls.Add(this.Test2);
+            this.Controls.Add(this.Test);
+            this.Controls.Add(this.SubmitTag);
+            this.Controls.Add(this.TagTextbox);
+            this.Controls.Add(this.SubmitMusic);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.MusicList);
+            this.Controls.Add(this.Next);
+            this.Controls.Add(this.Play);
+            this.Name = "MusicTextbox";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,9 +144,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label SongName;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Play;
+        private System.Windows.Forms.Button Next;
+        private System.Windows.Forms.ListBox MusicList;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button SubmitMusic;
+        private System.Windows.Forms.Button SubmitTag;
+        private System.Windows.Forms.TextBox TagTextbox;
+        private System.Windows.Forms.Button Test;
+        private System.Windows.Forms.Button Test2;
     }
 }
 
