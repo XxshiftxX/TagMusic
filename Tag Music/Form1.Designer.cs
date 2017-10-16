@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Play = new System.Windows.Forms.Button();
             this.Next = new System.Windows.Forms.Button();
             this.MusicList = new System.Windows.Forms.ListBox();
@@ -37,6 +38,8 @@
             this.TagTextbox = new System.Windows.Forms.TextBox();
             this.Test = new System.Windows.Forms.Button();
             this.Test2 = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // Play
@@ -65,7 +68,7 @@
             this.MusicList.ItemHeight = 12;
             this.MusicList.Location = new System.Drawing.Point(24, 12);
             this.MusicList.Name = "MusicList";
-            this.MusicList.Size = new System.Drawing.Size(156, 184);
+            this.MusicList.Size = new System.Drawing.Size(541, 184);
             this.MusicList.TabIndex = 3;
             // 
             // textBox1
@@ -77,7 +80,7 @@
             // 
             // SubmitMusic
             // 
-            this.SubmitMusic.Location = new System.Drawing.Point(374, 258);
+            this.SubmitMusic.Location = new System.Drawing.Point(571, 258);
             this.SubmitMusic.Name = "SubmitMusic";
             this.SubmitMusic.Size = new System.Drawing.Size(75, 23);
             this.SubmitMusic.TabIndex = 5;
@@ -86,7 +89,7 @@
             // 
             // SubmitTag
             // 
-            this.SubmitTag.Location = new System.Drawing.Point(374, 231);
+            this.SubmitTag.Location = new System.Drawing.Point(571, 231);
             this.SubmitTag.Name = "SubmitTag";
             this.SubmitTag.Size = new System.Drawing.Size(75, 23);
             this.SubmitTag.TabIndex = 7;
@@ -102,7 +105,7 @@
             // 
             // Test
             // 
-            this.Test.Location = new System.Drawing.Point(374, 12);
+            this.Test.Location = new System.Drawing.Point(571, 12);
             this.Test.Name = "Test";
             this.Test.Size = new System.Drawing.Size(75, 23);
             this.Test.TabIndex = 8;
@@ -112,7 +115,7 @@
             // 
             // Test2
             // 
-            this.Test2.Location = new System.Drawing.Point(374, 41);
+            this.Test2.Location = new System.Drawing.Point(571, 41);
             this.Test2.Name = "Test2";
             this.Test2.Size = new System.Drawing.Size(75, 23);
             this.Test2.TabIndex = 9;
@@ -120,11 +123,15 @@
             this.Test2.UseVisualStyleBackColor = true;
             this.Test2.Click += new System.EventHandler(this.Test2_Click);
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.bindingSource1_ListChanged);
+            // 
             // MusicTextbox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 296);
+            this.ClientSize = new System.Drawing.Size(658, 296);
             this.Controls.Add(this.Test2);
             this.Controls.Add(this.Test);
             this.Controls.Add(this.SubmitTag);
@@ -137,6 +144,7 @@
             this.Name = "MusicTextbox";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,6 +161,7 @@
         private System.Windows.Forms.TextBox TagTextbox;
         private System.Windows.Forms.Button Test;
         private System.Windows.Forms.Button Test2;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
 

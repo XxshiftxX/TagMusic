@@ -27,18 +27,18 @@ namespace Tag_Music
         ISoundOut soundOut = null;
         IWaveSource soundSource = null;
 
-        BindingList<string> nowPlayingMusics;
+        ObservableCollection<Music> nowPlayingMusics;
         int nowPlayingIndex = 0;
 
-        BindingList<string> newTag = new BindingList<string>
+        ObservableCollection<Music> newTag = new ObservableCollection<Music>
         {
-            @"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3",
-            @"D:\Music\V3\MKDR feat. [하츠네 미쿠] Umi Kun Cover (DECO   27).mp3"
+            new Music(@"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3"),
+            new Music(@"D:\Music\V3\MKDR feat. [하츠네 미쿠] Umi Kun Cover (DECO   27).mp3")
         };
 
-        BindingList<string> newTag2 = new BindingList<string>
+        ObservableCollection<Music> newTag2 = new ObservableCollection<Music>
         {
-            @"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3"
+            new Music(@"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3")
         };
 
         public MusicTextbox()
@@ -47,16 +47,20 @@ namespace Tag_Music
 
             device = new MMDeviceEnumerator().EnumAudioEndpoints(DataFlow.Render, DeviceState.Active)[0];
 
-            nowPlayingMusics = new BindingList<string>
+            nowPlayingMusics = new ObservableCollection<Music>
             {
-                @"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3",
-                @"D:\Music\V3\Manic   Luna feat.오토마치 우나 & 라나.mp3",
-                @"D:\Music\V3\PinocchioP - I'm glad you're evil too   ピノキオピー - きみも悪い人でよかった.mp3"
+                new Music(@"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3"),
+                new Music(@"D:\Music\V3\Manic   Luna feat.오토마치 우나 & 라나.mp3"),
+                new Music(@"D:\Music\V3\PinocchioP - I'm glad you're evil too   ピノキオピー - きみも悪い人でよかった.mp3")
             };
 
-            Open(nowPlayingMusics[nowPlayingIndex]);
+            Open(nowPlayingMusics[nowPlayingIndex].Name);
 
-            MusicList.DataSource = nowPlayingMusics;
+            MusicList.DataSource = bindingSource1;
+
+            MusicList.DisplayMember = "Name";
+
+            bindingSource1.DataSource = nowPlayingMusics;
         }
 
         private void CleanupPlayback()
@@ -83,41 +87,21 @@ namespace Tag_Music
             soundOut.Initialize(soundSource);
         }
 
-        private void AddTagToList(params BindingList<string>[] tags)
+        private void AddTagToList(params ObservableCollection<Music>[] tags)
         {
-            foreach(BindingList<string> item in tags)
+            foreach (ObservableCollection<Music> item in tags)
             {
-                BindingList<string> temp = new BindingList<string>();
-                foreach (string jtem in nowPlayingMusics.Union(item))
+                foreach (Music jtem in item)
                 {
-                    temp.Add(jtem);
+                    if (!nowPlayingMusics.Contains(jtem))
+                        nowPlayingMusics.Add(jtem);
                 }
-                nowPlayingMusics = temp;
             }
         }
 
-        private void DeleteTagToList(params BindingList<string>[] tags)
+        private void DeleteTagToList(params ObservableCollection<Music>[] tags)
         {
-            foreach (BindingList<string> item in tags)
-            {
-                BindingList<string> temp = new BindingList<string>();
-                foreach (string jtem in nowPlayingMusics.Except(item))
-                {
-                    string add = temp.AddNew();
-                    add = jtem;
-                }
-                foreach(string jtem in temp)
-                {
-                    string add = nowPlayingMusics.AddNew();
-                    add = jtem;
-                }
-            }
-        }
-        
-        void listOfParts_AddingNew(object sender, AddingNewEventArgs e)
-        {
-            e.NewObject = "hi";
-
+            throw new NotImplementedException();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -148,12 +132,12 @@ namespace Tag_Music
 
             if (soundOut.PlaybackState == PlaybackState.Playing)
             {
-                Open(nowPlayingMusics[nowPlayingIndex]);
+                Open(nowPlayingMusics[nowPlayingIndex].Name);
                 soundOut.Play();
             }
             else
             {
-                Open(nowPlayingMusics[nowPlayingIndex]);
+                Open(nowPlayingMusics[nowPlayingIndex].Name);
             }
         }
 
@@ -165,6 +149,26 @@ namespace Tag_Music
         private void Test2_Click(object sender, EventArgs e)
         {
             DeleteTagToList(newTag2);
+        }
+
+        private void bindingSource1_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            MusicList.DataSource = bindingSource1;
+        }
+    }
+
+    public class Music
+    {
+        string name;
+        public Music(string name)
+        {
+            this.name = name;
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
         }
     }
 }
