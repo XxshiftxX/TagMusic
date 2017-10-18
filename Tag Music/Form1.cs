@@ -129,6 +129,8 @@ namespace Tag_Music
             nowPlayingIndex++;
             if (nowPlayingIndex >= nowPlayingMusics.Count)
                 nowPlayingIndex = 0;
+            bool isPlaying = soundOut.PlaybackState == PlaybackState.Playing;
+
 
             if (soundOut.PlaybackState == PlaybackState.Playing)
             {
