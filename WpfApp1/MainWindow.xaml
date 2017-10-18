@@ -22,6 +22,8 @@
             
         </Style>
     </Window.Resources>
+
+    <!--메인 화면 그리드이다. 어~ 예!-->
     <Grid DataContext="{StaticResource musics}">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -29,59 +31,67 @@
             <RowDefinition Height="4"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox Grid.Row="1" Name="MusicListBox" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" >
-            
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                    <EventSetter Event="MouseDoubleClick" Handler="MusicList_MouseDoubleClick"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="{Binding Path=Name}" Foreground="White" Margin="0,5,0,0" FontSize="20" VerticalAlignment="Bottom" FontFamily="Noto Sans CJK KR DemiLight"/>
-                        <TextBlock Text="{Binding Path=Artist}" Foreground="#FFB8B8B8" Margin="0,0,0,5" Grid.Row="1" VerticalAlignment="Top" FontFamily="Noto Sans CJK KR Thin"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
 
-        <ListBox Grid.Row="1" Grid.Column="2" Name="MusicTagBox" ItemsSource="{StaticResource Tag1}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Name}" Foreground="White" Margin="0,5,0,0" FontSize="20" VerticalAlignment="Bottom" FontFamily="Noto Sans CJK KR DemiLight" TextWrapping="Wrap"/>
-                        <TextBlock Text="{Binding Path=Artist}" Foreground="#FFB8B8B8" Margin="0,0,0,5" Grid.Row="1" VerticalAlignment="Top" FontFamily="Noto Sans CJK KR Thin"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
- 
-        
+        <!--메인 영역-->
+        <!--현재 플레이중인 음악을 확인 및 관리하는 곳.-->
+        <Grid x:Name="PlayingTab"  Grid.Row="1">
+            <ListBox Name="MusicListBox" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" >
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <EventSetter Event="MouseDoubleClick" Handler="MusicList_MouseDoubleClick"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Path=Name}" Foreground="White" Margin="0,5,0,0" FontSize="20" VerticalAlignment="Bottom" FontFamily="Noto Sans CJK KR DemiLight"/>
+                            <TextBlock Text="{Binding Path=Artist}" Foreground="#FFB8B8B8" Margin="0,0,0,5" Grid.Row="1" VerticalAlignment="Top" FontFamily="Noto Sans CJK KR Thin"/>
+                            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#00000000" Grid.RowSpan="2" Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type cs:MainWindow}}}" >
+                                <Rectangle.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Delete"/>
+                                    </ContextMenu>
+                                </Rectangle.ContextMenu>
+                            </Rectangle>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
 
 
+        <Grid x:Name="Tag_Box">
+            <ListBox Grid.Row="1" Grid.Column="2" Name="MusicTagBox" ItemsSource="{StaticResource Tag1}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=Name}" Foreground="White" Margin="0,5,0,0" FontSize="20" VerticalAlignment="Bottom" FontFamily="Noto Sans CJK KR DemiLight" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Path=Artist}" Foreground="#FFB8B8B8" Margin="0,0,0,5" Grid.Row="1" VerticalAlignment="Top" FontFamily="Noto Sans CJK KR Thin"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+
+        <!--프로그레스 바-->
         <Rectangle x:Name="ProgressBar" Fill="#FFF33939" Grid.Row="2" Width="100" HorizontalAlignment="Left"/>
 
-        <Button x:Name="AddButton" Grid.Row="1" Grid.Column="1" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="AddButton_Click">
-            <TextBlock x:Name="AddButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">+</TextBlock>
-        </Button>
+        
+        <!--하단 영역(버튼)-->
         <Button x:Name="PlayButton" Grid.Row="3" Grid.ColumnSpan="3" Margin="0,2" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="PlayButton_Click" >
             <TextBlock x:Name="PlayButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">▶</TextBlock>
         </Button>
         <Button x:Name="NextButton" Grid.Row="3" Grid.ColumnSpan="3" Margin="394,2,328,2" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="NextButton_Click" >
             <TextBlock x:Name="NextButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">>></TextBlock>
         </Button>
-        <Button x:Name="FileButton" Grid.Row="3" Grid.Column="2" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="FileButton_Click" HorizontalAlignment="Right" >
-            <TextBlock x:Name="FileButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">ㅁ</TextBlock>
+        <Button x:Name="MoveButton" Grid.Row="3" Grid.Column="2" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="MoveButton_Click" HorizontalAlignment="Right" >
+            <TextBlock x:Name="MoveButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">ㅁ</TextBlock>
         </Button>
     </Grid>
 </Window>

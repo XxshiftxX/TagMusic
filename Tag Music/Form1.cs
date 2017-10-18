@@ -28,13 +28,8 @@ namespace Tag_Music
         IWaveSource soundSource = null;
 
         ObservableCollection<Music> nowPlayingMusics;
+        ObservableCollection<Music> allMusics;
         int nowPlayingIndex = 0;
-
-        ObservableCollection<Music> newTag = new ObservableCollection<Music>
-        {
-            new Music(@"D:\Music\V3\【初音ミク】 Hand in Hand (Magical Mirai ver.) 【マジカルミライ 2015】.mp3"),
-            new Music(@"D:\Music\V3\MKDR feat. [하츠네 미쿠] Umi Kun Cover (DECO   27).mp3")
-        };
 
         ObservableCollection<Music> newTag2 = new ObservableCollection<Music>
         {
@@ -141,11 +136,6 @@ namespace Tag_Music
             {
                 Open(nowPlayingMusics[nowPlayingIndex].Name);
             }
-        }
-
-        private void Test_Click(object sender, EventArgs e)
-        {
-            AddTagToList(newTag);
         }
 
         private void Test2_Click(object sender, EventArgs e)

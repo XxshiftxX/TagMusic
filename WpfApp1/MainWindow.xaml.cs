@@ -174,11 +174,21 @@ namespace WpfApp1
             soundOut.Stop();
             soundOut.Dispose();
         }
+
+        private void MoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Tag_Add tag_Add = new Tag_Add();
+            App.Current.MainWindow = tag_Add;
+            this.Close();
+            tag_Add.Show();
+        }
     }
 
     public class MusicList : ObservableCollection<Music> { }
 
     public class MusicTag : ObservableCollection<Music> { }
+
+    public class MusicTagList : ObservableCollection<MusicTag> { }
 
     public class Music : INotifyPropertyChanged
     {
