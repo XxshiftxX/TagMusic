@@ -14,10 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-
-using TagLib;
 
 using CSCore;
 using CSCore.CoreAudioAPI;
@@ -33,11 +30,10 @@ namespace WpfApp1
     {
         // 메인 그리드의 현재 그리드(현재 선택된 메뉴)
         Grid NowGrid;
-
-        // 사용자가 등록한 모든 음악
+        
         MusicList list_All;
-        // 현재 재생중인 음악
         MusicList list_Playing;
+        MusicTagList list_Tags;
         
         // cscore 관련 변수들
         MMDevice device;
@@ -53,19 +49,20 @@ namespace WpfApp1
         // 진행 바의 길이
         float progressBar = 0;
 
-
+        
 
         // 생성자
         public MainWindow()
         {
             InitializeComponent();
-
             
             // list들을 xaml과 연동
             list_All = new MusicList();
             list_All = (MusicList)FindResource("AllMusics");
             list_Playing = new MusicList();
             list_Playing = (MusicList)FindResource("PlayingMusics");
+            list_Tags = new MusicTagList();
+            list_Tags = (MusicTagList)FindResource("TagList");
 
             // cscore Device 설정
             device = new MMDeviceEnumerator().EnumAudioEndpoints(DataFlow.Render, DeviceState.Active)[0];
@@ -149,6 +146,7 @@ namespace WpfApp1
                 soundSource = null;
             }
         }
+        
 
         // 음악 파일 실행
         private void Open(string filename)
@@ -162,7 +160,7 @@ namespace WpfApp1
         }
 
         // 음악 재생, 일시정지
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        private void PlayButton_Click(object sender = null, RoutedEventArgs e = null)
         {
             if (soundOut.PlaybackState == PlaybackState.Playing)
             {
@@ -263,73 +261,12 @@ namespace WpfApp1
             if (!overlapped)
                 list_All.Add(new Music(dlg.FileName));
         }
-    }
 
-    public class MusicList : ObservableCollection<Music> { }
 
-    public class MusicTag : ObservableCollection<Music> { }
 
-    public class MusicTagList : ObservableCollection<MusicTag> { }
-
-    public class Music : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void Notify(string strName)
-        {
-            if(PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(strName));
-            }
-        }
-
-        string path;
-        File file;
-
-        public Music()
+        private void TagsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-        }
-
-        public Music(string path)
-        {
-            this.path = path;
-            file = File.Create(path);
-        }
-
-        public string Path
-        {
-            get { return path; }
-            set
-            {
-                path = value;
-                Notify("name");
-            }
-        }
-        public string Name
-        {
-            get
-            {
-                if (file == null)
-                    file = File.Create(path);
-                if (file.Tag.Title == null)
-                    return path.Split('\\')[path.Split('\\').Length - 1];
-
-                return file.Tag.Title;
-            }
-        }
-        public string Artist
-        {
-            get
-            {
-                if (file == null)
-                    file = File.Create(path);
-
-                if (file.Tag.Artists.Length < 1)
-                    return "Unknown Artist";
-
-                return file.Tag.Artists[0];
-            }
         }
     }
 }
