@@ -86,7 +86,7 @@ namespace WpfApp1
             NowGrid = PlayingTab;
             
             Update();
-            
+
             // TEST AREA
             soundOut.Volume = 0.5f;
         }
@@ -266,7 +266,36 @@ namespace WpfApp1
 
         private void TagsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            list_Playing.Clear();
+            foreach (Music m in ((KeyValuePair<string, MusicTag>)(TagsListBox.SelectedItem)).Value)
+            {
+                list_Playing.Add(m);
+            }
+            Open(((Music)AllMusicListBox.SelectedItem).Path);
+            soundOut.Play();
+        }
 
+        private void TagAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            TagAddWindow window = new TagAddWindow();
+            string temp = string.Empty;
+
+            if (window.ShowDialog() == true)
+            {
+                temp = window.TagName;
+            }
+
+            if(!list_Tags.ContainsKey(temp))
+                list_Tags.Add(window.TagName, new MusicTag());
+
+            Debug.Print(PlayingMusicListBox.SelectedItem.ToString());
+            list_Tags[temp].Add((Music)PlayingMusicListBox.SelectedItem);
+        }
+
+        private void MoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Open(list_Tags["asdf"][1].Path);
+            soundOut.Play();
         }
     }
 }

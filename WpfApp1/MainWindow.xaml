@@ -99,7 +99,7 @@
                             <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#00000000" Grid.RowSpan="2" Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type cs:MainWindow}}}" >
                                 <Rectangle.ContextMenu>
                                     <ContextMenu>
-                                        <MenuItem Header="Delete"/>
+                                        <MenuItem Header="Tag Add" Click="TagAddButton_Click"/>
                                     </ContextMenu>
                                 </Rectangle.ContextMenu>
                             </Rectangle>
@@ -109,14 +109,21 @@
             </ListBox>
         </Grid>
 
-
         <Grid x:Name="TagTab" Grid.Row="1" Visibility="Hidden">
-            <ListBox x:Name="TagsListBox" DataContext="{StaticResource TagList}" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}">
+            <ListBox x:Name="TagsListBox" Grid.Row="0" DataContext="{StaticResource TagList}" ItemsSource="{DynamicResource TagList}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseDoubleClick" Handler="TagsList_MouseDoubleClick"/>
                     </Style>
                 </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="1" Text="#" Foreground="White" />
+                            <TextBlock Margin="1" Text="{Binding Key}" Foreground="White" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
 
@@ -132,7 +139,7 @@
         <Button x:Name="NextButton" Grid.Row="3" Grid.ColumnSpan="3" Margin="394,2,328,2" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="NextButton_Click" >
             <TextBlock x:Name="NextButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">>></TextBlock>
         </Button>
-        <Button x:Name="MoveButton" Grid.Row="3" Grid.Column="2" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" >
+        <Button x:Name="MoveButton" Grid.Row="3" Grid.Column="2" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" Click="MoveButton_Click" >
             <TextBlock x:Name="MoveButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">ㅁ</TextBlock>
         </Button>
     </Grid>

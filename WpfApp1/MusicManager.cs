@@ -66,7 +66,7 @@ namespace WpfApp1
 
     public class MusicTag : ObservableCollection<Music> { }
 
-    public class MusicTagList : ObservableCollection<MusicTag> { }
+    public class MusicTagList : Dictionary<string, MusicTag> { }
 
     public class Music : INotifyPropertyChanged
     {
@@ -82,7 +82,7 @@ namespace WpfApp1
 
         string path;
         File file;
-        List<Tag> tags;
+        List<string> tags = new List<string>();
 
         public Music()
         {
@@ -127,6 +127,13 @@ namespace WpfApp1
                     return "Unknown Artist";
 
                 return file.Tag.Artists[0];
+            }
+        }
+        public List<string> Tag
+        {
+            get
+            {
+                return Tag;
             }
         }
     }
