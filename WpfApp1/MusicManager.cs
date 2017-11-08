@@ -118,7 +118,7 @@ namespace WpfApp1
         }
         public string Artist
         {
-            get
+            get 
             {
                 if (file == null)
                     file = File.Create(path);

@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tag Music", "Tag Music\Tag Music.csproj", "{075D83EB-11B7-4DA9-93EC-056388602DEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{D023DB53-D0E9-496B-A284-166AA50FF150}"
+	ProjectSection(ProjectDependencies) = postProject
+		{075D83EB-11B7-4DA9-93EC-056388602DEE} = {075D83EB-11B7-4DA9-93EC-056388602DEE}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

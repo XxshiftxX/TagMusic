@@ -8,12 +8,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Closing="Window_Closing" Width="800" Height="500" Background="#FF131313">
     <Window.Resources>
-        <cs:MusicList x:Key="AllMusics" />
-        <cs:MusicList x:Key="PlayingMusics" />
-        <cs:MusicTagList x:Key="TagList" />
-        <Style x:Key="ScrollBar">
-
-        </Style>
+        <cs:MusicList x:Key="rscAllMusicList" />
+        <cs:MusicList x:Key="rscPlayingMusicList" />
+        <cs:MusicTagList x:Key="rscAllTagList" />
     </Window.Resources>
 
     <!--메인 화면 그리드이다. 어~ 예!-->
@@ -28,13 +25,13 @@
 
         <!--상단 메뉴 스택패널이다. 어~ 예!-->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,0,0,10">
-            <Button x:Name="Menu_AllMusicTabButton" Grid.Row="3" Grid.ColumnSpan="3" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Menu_AllMusicTabButton_Click" Margin="10,0" >
+            <Button x:Name="btnAllMusicTab" BorderThickness="0" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Menu_AllMusicTabButton_Click" Margin="10,0" >
                 <TextBlock x:Name="Menu_AllMusicTabButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">All Music</TextBlock>
             </Button>
-            <Button x:Name="Menu_PlayingTabButton" Grid.Row="3" Grid.ColumnSpan="3" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="10,0" Click="Menu_PlayingTabButton_Click" >
+            <Button x:Name="btnPlayingMusicTab" Grid.Row="3" Grid.ColumnSpan="3" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="10,0" Click="Menu_PlayingTabButton_Click" >
                 <TextBlock x:Name="Menu_PlayingTabButtonText" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Playing</TextBlock>
             </Button>
-            <Button x:Name="Menu_TagTabButton" Grid.Row="3" Grid.ColumnSpan="3" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Menu_TagTabButton_Click" Margin="10,0" >
+            <Button x:Name="btnAllTagTab" Grid.Row="3" Grid.ColumnSpan="3" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Menu_TagTabButton_Click" Margin="10,0" >
                 <TextBlock x:Name="Menu_TagTabButtonText" Grid.Row="2" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Tags</TextBlock>
             </Button>
         </StackPanel>
@@ -48,7 +45,7 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
             
-            <ListBox  Name="AllMusicListBox" DataContext="{StaticResource AllMusics}" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" HorizontalAlignment="Stretch" >
+            <ListBox  Name="AllMusicListBox" DataContext="{StaticResource rscAllMusicList}" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" HorizontalAlignment="Stretch" >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseDoubleClick" Handler="AllMusicList_MouseDoubleClick"/>
@@ -80,7 +77,7 @@
 
         <!--현재 플레이중인 음악을 확인 및 관리하는 곳.-->
         <Grid x:Name="PlayingTab"  Grid.Row="1">
-            <ListBox Name="PlayingMusicListBox" DataContext="{StaticResource PlayingMusics}" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" >
+            <ListBox Name="PlayingMusicListBox" DataContext="{StaticResource rscPlayingMusicList}" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseDoubleClick" Handler="PlayingMusicList_MouseDoubleClick"/>
@@ -110,7 +107,7 @@
         </Grid>
 
         <Grid x:Name="TagTab" Grid.Row="1" Visibility="Hidden">
-            <ListBox x:Name="TagsListBox" Grid.Row="0" DataContext="{StaticResource TagList}" ItemsSource="{DynamicResource TagList}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}">
+            <ListBox x:Name="TagsListBox" Grid.Row="0" DataContext="{StaticResource rscAllTagList}" ItemsSource="{DynamicResource rscAllTagList}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseDoubleClick" Handler="TagsList_MouseDoubleClick"/>

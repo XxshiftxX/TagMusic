@@ -27,28 +27,24 @@ namespace WpfApp1
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
     public partial class MainWindow : Window
-    {
-        // 메인 그리드의 현재 그리드(현재 선택된 메뉴)
-        Grid NowGrid;
-        
-        MusicList list_All;
-        MusicList list_Playing;
-        MusicTagList list_Tags;
-        
-        // cscore 관련 변수들
-        MMDevice device;
-        ISoundOut soundOut = null;
-        IWaveSource soundSource = null;
+    {   
+        public MusicList allMusicList;
+        public MusicList playingMusicList;
 
-        // Update 함수의 루프 여부 (false로 할 시 루프가 종료 > 재시작 필요)
-        bool isUpdating = true;
+        public MusicTagList allTagList;
 
-        // 현재 재생중인 음악의 번호
         public int playingIndex = 0;
 
-        // 진행 바의 길이
-        float progressBar = 0;
 
+        private Grid _nowGrid;
+
+        private MMDevice _device;
+        private ISoundOut _soundOut = null;
+        private IWaveSource _soundSource = null;
+
+        private bool _isUpdating = true;
+
+        private float _progressBar = 0;
         
 
         // 생성자
@@ -57,56 +53,56 @@ namespace WpfApp1
             InitializeComponent();
             
             // list들을 xaml과 연동
-            list_All = new MusicList();
-            list_All = (MusicList)FindResource("AllMusics");
-            list_Playing = new MusicList();
-            list_Playing = (MusicList)FindResource("PlayingMusics");
-            list_Tags = new MusicTagList();
-            list_Tags = (MusicTagList)FindResource("TagList");
+            allMusicList = new MusicList();
+            allMusicList = (MusicList)FindResource("rscAllMusicList");
+            playingMusicList = new MusicList();
+            playingMusicList = (MusicList)FindResource("rscPlayingMusicList");
+            allTagList = new MusicTagList();
+            allTagList = (MusicTagList)FindResource("rscAllTagList");
 
             // cscore Device 설정
-            device = new MMDeviceEnumerator().EnumAudioEndpoints(DataFlow.Render, DeviceState.Active)[0];
+            _device = new MMDeviceEnumerator().EnumAudioEndpoints(DataFlow.Render, DeviceState.Active)[0];
 
-            Debug.Print(list_All.Count.ToString());
+            Debug.Print(allMusicList.Count.ToString());
 
             // 파일이 없을 시 한개 불러오기
-            if (list_All.Count < 1)
+            if (allMusicList.Count < 1)
             {
                 Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
                 Nullable<bool> result = dlg.ShowDialog();
 
-                list_All.Add(new Music(dlg.FileName));
+                allMusicList.Add(new Music(dlg.FileName));
             }
 
             // 플레이리스트의 첫번쨰 음악을 오픈
-            Open(list_All[0].Path);
+            Open(allMusicList[0].Path);
 
             // 현재 열고있는 탭을 PlayingTab으로
-            NowGrid = PlayingTab;
+            _nowGrid = PlayingTab;
             
             Update();
 
             // TEST AREA
-            soundOut.Volume = 0.5f;
+            _soundOut.Volume = 0.5f;
         }
 
         // 0.1초당 한번씩 실행되는 함수
         private async void Update()
         {
-            while (isUpdating)
+            while (_isUpdating)
             {
-                progressBar = (float)soundSource.Position / soundSource.Length * (float)Screen.Width;
+                _progressBar = (float)_soundSource.Position / _soundSource.Length * (float)Screen.Width;
 
-                ProgressBar.Width = progressBar;
+                ProgressBar.Width = _progressBar;
 
-                if (soundSource.Position == soundSource.Length)
+                if (_soundSource.Position == _soundSource.Length)
                 {
-                    if (++playingIndex >= list_Playing.Count)
+                    if (++playingIndex >= playingMusicList.Count)
                         playingIndex = 0;
 
-                    Open(list_Playing[playingIndex].Path);
-                    soundOut.Play();
+                    Open(playingMusicList[playingIndex].Path);
+                    _soundOut.Play();
                 }
 
                 await Task.Delay(100);
@@ -117,33 +113,33 @@ namespace WpfApp1
         private void PlayingMusicList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Open(((Music)PlayingMusicListBox.SelectedItem).Path);
-            soundOut.Play();
+            _soundOut.Play();
         }
 
         // 리스트에서 음악 더블클릭 (list_Playing)
         private void AllMusicList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            list_Playing.Clear();
-            foreach(Music m in list_All)
+            playingMusicList.Clear();
+            foreach(Music m in allMusicList)
             {
-                list_Playing.Add(m);
+                playingMusicList.Add(m);
             }
             Open(((Music)AllMusicListBox.SelectedItem).Path);
-            soundOut.Play();
+            _soundOut.Play();
         }
 
         // 음악 파일 실행 전 Clean up 작업
         private void CleanupPlayback()
         {
-            if (soundOut != null)
+            if (_soundOut != null)
             {
-                soundOut.Dispose();
-                soundOut = null;
+                _soundOut.Dispose();
+                _soundOut = null;
             }
-            if (soundSource != null)
+            if (_soundSource != null)
             {
-                soundSource.Dispose();
-                soundSource = null;
+                _soundSource.Dispose();
+                _soundSource = null;
             }
         }
         
@@ -153,23 +149,23 @@ namespace WpfApp1
         {
             CleanupPlayback();
 
-            soundSource = CodecFactory.Instance.GetCodec(filename);
+            _soundSource = CodecFactory.Instance.GetCodec(filename);
 
-            soundOut = new WasapiOut() { Device = device, Latency = 100 };
-            soundOut.Initialize(soundSource);
+            _soundOut = new WasapiOut() { Device = _device, Latency = 100 };
+            _soundOut.Initialize(_soundSource);
         }
 
         // 음악 재생, 일시정지
         private void PlayButton_Click(object sender = null, RoutedEventArgs e = null)
         {
-            if (soundOut.PlaybackState == PlaybackState.Playing)
+            if (_soundOut.PlaybackState == PlaybackState.Playing)
             {
-                soundOut.Stop();
+                _soundOut.Stop();
             }
             else
             {
-                soundOut.Play();
-                soundSource.Position = 21229056;
+                _soundOut.Play();
+                _soundSource.Position = 21229056;
             }
         }
 
@@ -177,14 +173,14 @@ namespace WpfApp1
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             playingIndex++;
-            if (playingIndex >= list_Playing.Count)
+            if (playingIndex >= playingMusicList.Count)
                 playingIndex = 0;
 
-            bool isPlaing = soundOut.PlaybackState == PlaybackState.Playing;
+            bool isPlaing = _soundOut.PlaybackState == PlaybackState.Playing;
 
-            Open(list_Playing[playingIndex].Path);
+            Open(playingMusicList[playingIndex].Path);
             if (isPlaing)
-                soundOut.Play();
+                _soundOut.Play();
         }
 
         // list_Playing에 해당 태그를 추가
@@ -193,14 +189,14 @@ namespace WpfApp1
             foreach (Music m in tags)
             {
                 bool overlapped = false;
-                foreach(Music temp in list_Playing)
+                foreach(Music temp in playingMusicList)
                 {
                     if (temp.Path == m.Path)
                         overlapped = true;
                 }
 
                 if(!overlapped)
-                    list_Playing.Add(m);
+                    playingMusicList.Add(m);
             }
         }
 
@@ -211,38 +207,38 @@ namespace WpfApp1
 
             Nullable<bool> result = dlg.ShowDialog();
 
-            list_All.Add(new Music(dlg.FileName));
+            allMusicList.Add(new Music(dlg.FileName));
         }
 
         // 창 종료 전에 실행
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            soundOut.Stop();
-            soundOut.Dispose();
+            _soundOut.Stop();
+            _soundOut.Dispose();
         }
 
         // 상단 메뉴 (AllMusic)
         private void Menu_AllMusicTabButton_Click(object sender, RoutedEventArgs e)
         {
-            NowGrid.Visibility = Visibility.Hidden;
+            _nowGrid.Visibility = Visibility.Hidden;
             AllMusicTab.Visibility = Visibility.Visible;
-            NowGrid = AllMusicTab;
+            _nowGrid = AllMusicTab;
         }
 
         // 상단 메뉴 (PlayingTab)
         private void Menu_PlayingTabButton_Click(object sender, RoutedEventArgs e)
         {
-            NowGrid.Visibility = Visibility.Hidden;
+            _nowGrid.Visibility = Visibility.Hidden;
             PlayingTab.Visibility = Visibility.Visible;
-            NowGrid = PlayingTab;
+            _nowGrid = PlayingTab;
         }
 
         // 상단 메뉴 (TagTab)
         private void Menu_TagTabButton_Click(object sender, RoutedEventArgs e)
         {
-           NowGrid.Visibility = Visibility.Hidden;
+           _nowGrid.Visibility = Visibility.Hidden;
             TagTab.Visibility = Visibility.Visible;
-            NowGrid = TagTab;
+            _nowGrid = TagTab;
         }
 
         private void FillAddButton_Click(object sender, RoutedEventArgs e)
@@ -252,27 +248,27 @@ namespace WpfApp1
             Nullable<bool> result = dlg.ShowDialog();
 
             bool overlapped = false;
-            foreach (Music temp in list_All)
+            foreach (Music temp in allMusicList)
             {
                 if (temp.Path == dlg.FileName)
                     overlapped = true;
             }
 
             if (!overlapped)
-                list_All.Add(new Music(dlg.FileName));
+                allMusicList.Add(new Music(dlg.FileName));
         }
 
 
 
         private void TagsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            list_Playing.Clear();
+            playingMusicList.Clear();
             foreach (Music m in ((KeyValuePair<string, MusicTag>)(TagsListBox.SelectedItem)).Value)
             {
-                list_Playing.Add(m);
+                playingMusicList.Add(m);
             }
             Open(((Music)AllMusicListBox.SelectedItem).Path);
-            soundOut.Play();
+            _soundOut.Play();
         }
 
         private void TagAddButton_Click(object sender, RoutedEventArgs e)
@@ -285,17 +281,17 @@ namespace WpfApp1
                 temp = window.TagName;
             }
 
-            if(!list_Tags.ContainsKey(temp))
-                list_Tags.Add(window.TagName, new MusicTag());
+            if(!allTagList.ContainsKey(temp))
+                allTagList.Add(window.TagName, new MusicTag());
 
             Debug.Print(PlayingMusicListBox.SelectedItem.ToString());
-            list_Tags[temp].Add((Music)PlayingMusicListBox.SelectedItem);
+            allTagList[temp].Add((Music)PlayingMusicListBox.SelectedItem);
         }
 
         private void MoveButton_Click(object sender, RoutedEventArgs e)
         {
-            Open(list_Tags["asdf"][1].Path);
-            soundOut.Play();
+            Open(allTagList["asdf"][1].Path);
+            _soundOut.Play();
         }
     }
 }
