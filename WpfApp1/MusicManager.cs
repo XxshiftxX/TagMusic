@@ -64,7 +64,17 @@ namespace WpfApp1
         }
     }
 
-    public class MusicTag : ObservableCollection<Music> { }
+    public class MusicTag : ObservableCollection<Music>
+    {
+        private string name;
+
+        public MusicTag(string name)
+        {
+            this.name = name;
+        }
+
+        public string Name { get => name; }
+    }
 
     public class MusicTagList : Dictionary<string, MusicTag> { }
 

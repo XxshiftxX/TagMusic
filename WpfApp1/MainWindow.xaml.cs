@@ -38,6 +38,10 @@ namespace WpfApp1
 
         private Grid _nowGrid;
 
+        private bool _isAddingTag = true;
+        private List<MusicTag> _addingTags = new List<MusicTag>();
+        private List<MusicTag> _removingTags = new List<MusicTag>();
+
         private MMDevice _device;
         private ISoundOut _soundOut = null;
         private IWaveSource _soundSource = null;
@@ -183,20 +187,35 @@ namespace WpfApp1
                 _soundOut.Play();
         }
 
-        // list_Playing에 해당 태그를 추가
-        private void AddTag(MusicTag tags)
+        private void AddTag(ref MusicList musicList, MusicTag tag)
         {
-            foreach (Music m in tags)
+            foreach (Music m in tag)
             {
                 bool overlapped = false;
-                foreach(Music temp in playingMusicList)
+                foreach(Music temp in musicList)
                 {
                     if (temp.Path == m.Path)
                         overlapped = true;
                 }
 
                 if(!overlapped)
-                    playingMusicList.Add(m);
+                    musicList.Add(m);
+            }
+        }
+
+        private void RemoveTag(ref MusicList musicList, MusicTag tag)
+        {
+            foreach (Music m in tag)
+            {
+                bool overlapped = false;
+                foreach (Music temp in musicList)
+                {
+                    if (temp.Path == m.Path)
+                        overlapped = true;
+                }
+
+                if (overlapped)
+                    musicList.Remove(m);
             }
         }
 
@@ -262,13 +281,35 @@ namespace WpfApp1
 
         private void TagsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            playingMusicList.Clear();
-            foreach (Music m in ((KeyValuePair<string, MusicTag>)(TagsListBox.SelectedItem)).Value)
+            MusicTag tempTag = ((KeyValuePair<string, MusicTag>)(TagsListBox.SelectedItem)).Value;
+            if (_isAddingTag)
             {
-                playingMusicList.Add(m);
+                if (_addingTags.Contains(tempTag))
+                    _addingTags.Remove(tempTag);
+                else
+                    _addingTags.Add(tempTag);
+
+                string result = string.Empty;
+                foreach(MusicTag temp in _addingTags)
+                {
+                    result += "#" + temp.Name + " ";
+                }
+                txtAddedTag.Text = result;
             }
-            Open(((Music)AllMusicListBox.SelectedItem).Path);
-            _soundOut.Play();
+            else
+            {
+                if (_removingTags.Contains(tempTag))
+                    _removingTags.Remove(tempTag);
+                else
+                    _removingTags.Add(tempTag);
+
+                string result = string.Empty;
+                foreach (MusicTag temp in _removingTags)
+                {
+                    result += "#" + temp.Name + " ";
+                }
+                txtRemovedTag.Text = result;
+            }
         }
 
         private void TagAddButton_Click(object sender, RoutedEventArgs e)
@@ -282,7 +323,7 @@ namespace WpfApp1
             }
 
             if(!allTagList.ContainsKey(temp))
-                allTagList.Add(window.TagName, new MusicTag());
+                allTagList.Add(window.TagName, new MusicTag(window.TagName));
 
             Debug.Print(PlayingMusicListBox.SelectedItem.ToString());
             allTagList[temp].Add((Music)PlayingMusicListBox.SelectedItem);
@@ -291,6 +332,33 @@ namespace WpfApp1
         private void MoveButton_Click(object sender, RoutedEventArgs e)
         {
             Open(allTagList["asdf"][1].Path);
+            _soundOut.Play();
+        }
+        
+        private void btnTagTypeChange_Click(object sender, RoutedEventArgs e)
+        {
+            _isAddingTag = !_isAddingTag;
+        }
+
+        private void btnTagApply_Click(object sender, RoutedEventArgs e)
+        {
+            MusicList tempList = new MusicList();
+
+            foreach (MusicTag tag in _addingTags)
+            {
+                AddTag(ref tempList, tag);
+            }
+            foreach (MusicTag tag in _removingTags)
+            {
+                RemoveTag(ref tempList, tag);
+            }
+
+            playingMusicList.Clear();
+            foreach (Music m in tempList)
+            {
+                playingMusicList.Add(m);
+            }
+            Open(playingMusicList[0].Path);
             _soundOut.Play();
         }
     }
