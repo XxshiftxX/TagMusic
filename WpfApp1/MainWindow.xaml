@@ -39,13 +39,13 @@
         
         <!--메인 영역-->
         <!--모든 음악을 확인 및 관리하는 곳.-->
-        <Grid x:Name="AllMusicTab"  Grid.Row="1" Visibility="Hidden" Margin="0">
+        <Grid x:Name="AllMusicTab" Grid.Row="1" Visibility="Hidden" Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            
-            <ListBox  Name="AllMusicListBox" DataContext="{StaticResource rscAllMusicList}" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" HorizontalAlignment="Stretch" >
+
+            <ListBox  Name="AllMusicListBox" AllowDrop="True" DataContext="{StaticResource rscAllMusicList}" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" BorderThickness="0" Background="{x:Null}" HorizontalAlignment="Stretch" Drop="AllMusicListBox_Drop" >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseDoubleClick" Handler="AllMusicList_MouseDoubleClick"/>
@@ -67,6 +67,13 @@
                                 <TextBlock Text="{Binding Path=Name}" Foreground="White" Margin="0,5,0,0" FontSize="20" VerticalAlignment="Bottom" FontFamily="Noto Sans CJK KR DemiLight"/>
                             </Grid>
                             <TextBlock Text="{Binding Path=Artist}" Foreground="#FFB8B8B8" Margin="0,0,0,5" Grid.Row="1" VerticalAlignment="Top" FontFamily="Noto Sans CJK KR Thin"/>
+                            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#00000000" Grid.RowSpan="2" Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type cs:MainWindow}}}" >
+                                <Rectangle.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Tag Add" Click="TagAddButton_Click"/>
+                                    </ContextMenu>
+                                </Rectangle.ContextMenu>
+                            </Rectangle>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

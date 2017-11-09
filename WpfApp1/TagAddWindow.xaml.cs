@@ -24,6 +24,8 @@ namespace WpfApp1
         public TagAddWindow()
         {
             InitializeComponent();
+
+            TagNameField.TextChanged += TagNameField_TextChanged;
         }
 
         public string TagName
@@ -36,6 +38,17 @@ namespace WpfApp1
             tagName = TagNameField.Text;
             DialogResult = true;
             Close();
+        }
+
+        private void TagNameField_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            foreach(KeyValuePair<string, MusicTag> temp in MainWindow.allTagList)
+            {
+                if(temp.Value.Name.StartsWith(TagNameField.Text))
+                {
+                    
+                }
+            }
         }
     }
 }

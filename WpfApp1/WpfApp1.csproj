@@ -63,9 +63,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Lab.xaml.cs">
+      <DependentUpon>Lab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TagAddWindow.xaml.cs">
       <DependentUpon>TagAddWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Lab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

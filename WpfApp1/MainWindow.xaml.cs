@@ -28,10 +28,10 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {   
-        public MusicList allMusicList;
-        public MusicList playingMusicList;
+        public static MusicList allMusicList;
+        public static MusicList playingMusicList;
 
-        public MusicTagList allTagList;
+        public static MusicTagList allTagList;
 
         public int playingIndex = 0;
 
@@ -266,15 +266,21 @@ namespace WpfApp1
 
             Nullable<bool> result = dlg.ShowDialog();
 
+            AddFile(dlg.FileName);
+        }
+
+        private void AddFile(string path)
+        {
+
             bool overlapped = false;
             foreach (Music temp in allMusicList)
             {
-                if (temp.Path == dlg.FileName)
+                if (temp.Path == path)
                     overlapped = true;
             }
 
             if (!overlapped)
-                allMusicList.Add(new Music(dlg.FileName));
+                allMusicList.Add(new Music(path));
         }
 
 
@@ -360,6 +366,19 @@ namespace WpfApp1
             }
             Open(playingMusicList[0].Path);
             _soundOut.Play();
+        }
+
+        private void AllMusicListBox_Drop(object sender, DragEventArgs e)
+        {
+            if(e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (string temp in files)
+                {
+                    AddFile(temp);
+                }
+            }
         }
     }
 }
