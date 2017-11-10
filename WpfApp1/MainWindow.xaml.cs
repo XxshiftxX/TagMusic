@@ -331,7 +331,6 @@ namespace WpfApp1
             if(!allTagList.ContainsKey(temp))
                 allTagList.Add(window.TagName, new MusicTag(window.TagName));
 
-            Debug.Print(PlayingMusicListBox.SelectedItem.ToString());
             allTagList[temp].Add((Music)PlayingMusicListBox.SelectedItem);
         }
 

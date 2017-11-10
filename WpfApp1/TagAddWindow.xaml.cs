@@ -26,6 +26,9 @@ namespace WpfApp1
             InitializeComponent();
 
             TagNameField.TextChanged += TagNameField_TextChanged;
+            TagNameField.KeyDown += PressEnter;
+
+            TagNameField.Focus();
         }
 
         public string TagName
@@ -40,13 +43,24 @@ namespace WpfApp1
             Close();
         }
 
+        private void PressEnter(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Return)
+            {
+                AddButton_Click(null, null);
+            }
+        }
+
         private void TagNameField_TextChanged(object sender, TextChangedEventArgs e)
         {
             foreach(KeyValuePair<string, MusicTag> temp in MainWindow.allTagList)
             {
                 if(temp.Value.Name.StartsWith(TagNameField.Text))
                 {
-                    
+                    int stringCount = TagNameField.Text.Length;
+                    TagNameField.Text = temp.Value.Name;
+                    TagNameField.Focus();
+                    TagNameField.Select(stringCount, TagNameField.Text.Length);
                 }
             }
         }
