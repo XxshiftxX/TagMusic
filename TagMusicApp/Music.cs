@@ -8,6 +8,6 @@ namespace TagMusicApp
 {
     class Music
     {
-
+        public readonly string FilePath;
     }
 }

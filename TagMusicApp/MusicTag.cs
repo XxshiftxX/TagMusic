@@ -12,9 +12,47 @@ namespace TagMusicApp
 
         public readonly List<Music> Musics = new List<Music>();
 
+        public string TagName => _tagName;
+
         public MusicTag(string name)
         {
             _tagName = name;
+        }
+
+        public void AddMusic(Music music)
+        {
+            bool isContain = false;
+            foreach(Music m in Musics)
+            {
+                if(m.FilePath == music.FilePath)
+                {
+                    isContain = true;
+                    break;
+                }
+            }
+            
+            if(!isContain)
+            {
+                Musics.Add(music);
+            }
+        }
+
+        public void RemoveMusic(Music music)
+        {
+            bool isContain = false;
+            foreach (Music m in Musics)
+            {
+                if (m.FilePath == music.FilePath)
+                {
+                    isContain = true;
+                    break;
+                }
+            }
+
+            if (isContain)
+            {
+                Musics.Remove(music);
+            }
         }
     }
 }
