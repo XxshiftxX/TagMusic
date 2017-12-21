@@ -3,7 +3,6 @@ D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\Tag Music.exe
 D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\Tag Music.pdb
 D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\CSCore.dll
 D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\CSCore.xml
-D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.csprojResolveAssemblyReference.cache
 D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag_Music.Properties.Resources.resources
 D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.csproj.GenerateResource.Cache
 D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.csproj.CoreCompileInputs.cache

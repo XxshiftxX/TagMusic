@@ -18,7 +18,6 @@ D:\Programing\CSharp\Tag Music\WpfApp1\bin\Debug\taglib-sharp.dll
 D:\Programing\CSharp\Tag Music\WpfApp1\bin\Debug\CSCore.xml
 D:\Programing\CSharp\Tag Music\WpfApp1\bin\Debug\policy.2.0.taglib-sharp.config
 D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache
 D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\TagAddWindow.g.cs
 D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\TagAddWindow.baml
 D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\Lab.g.cs
