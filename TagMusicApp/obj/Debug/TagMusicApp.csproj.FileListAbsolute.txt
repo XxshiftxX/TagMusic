@@ -1,0 +1,14 @@
+D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\TagMusicApp.exe.config
+D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\TagMusicApp.exe
+D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\TagMusicApp.pdb
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\MainWindow.g.cs
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\App.g.cs
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp_MarkupCompile.cache
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp_MarkupCompile.lref
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\MainWindow.baml
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.g.resources
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.Properties.Resources.resources
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.csproj.GenerateResource.Cache
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.csproj.CoreCompileInputs.cache
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.exe
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.pdb

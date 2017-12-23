@@ -22,3 +22,4 @@ D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\TagAddWindow.g.cs
 D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\TagAddWindow.baml
 D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\Lab.g.cs
 D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\Lab.baml
+D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache

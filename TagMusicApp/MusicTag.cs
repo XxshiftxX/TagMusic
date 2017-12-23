@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace TagMusicApp
 {
-    class MusicTag
+    public class MusicTag : MusicList
     {
         private readonly string _tagName;
-
-        public readonly List<Music> Musics = new List<Music>();
 
         public string TagName => _tagName;
 
@@ -19,40 +17,28 @@ namespace TagMusicApp
             _tagName = name;
         }
 
-        public void AddMusic(Music music)
+        public override bool AddMusic(Music music)
         {
-            bool isContain = false;
-            foreach(Music m in Musics)
+            bool isContain = base.AddMusic(music);
+
+            if (!isContain)
             {
-                if(m.FilePath == music.FilePath)
-                {
-                    isContain = true;
-                    break;
-                }
+                music.Tags.Add(TagName);
             }
-            
-            if(!isContain)
-            {
-                Musics.Add(music);
-            }
+
+            return isContain;
         }
 
-        public void RemoveMusic(Music music)
+        public override bool RemoveMusic(Music music)
         {
-            bool isContain = false;
-            foreach (Music m in Musics)
-            {
-                if (m.FilePath == music.FilePath)
-                {
-                    isContain = true;
-                    break;
-                }
-            }
+            bool isContain = base.RemoveMusic(music);
 
             if (isContain)
             {
-                Musics.Remove(music);
+                music.Tags.Remove(TagName);
             }
+
+            return isContain;
         }
     }
 }

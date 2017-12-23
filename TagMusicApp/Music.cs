@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TagMusicApp
 {
-    class Music
+    public class Music
     {
         public readonly string FilePath;
+        public readonly List<string> Tags = new List<string>();
     }
 }

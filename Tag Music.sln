@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagMusicApp", "TagMusicApp\TagMusicApp.csproj", "{E9B3A656-556D-4342-A48C-FDB425F72443}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{E9B3A656-556D-4342-A48C-FDB425F72443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9B3A656-556D-4342-A48C-FDB425F72443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9B3A656-556D-4342-A48C-FDB425F72443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
