@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TagMusicApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Background="#2d2d36">
     <Grid>
-        
+        <Grid x:Name="MusicItemTemplate" Height="50" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="Music Name" VerticalAlignment="Center" Foreground="White" Margin="10, 0"/>
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="10:00" VerticalAlignment="Center" Foreground="White" Margin="10, 0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="Artist Name" VerticalAlignment="Center" Foreground="#596a6d" Margin="10, 0"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="#Many #Other # Tags" VerticalAlignment="Center" Foreground="#596a6d" Margin="10, 0"/>
+                <Button VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#7c9487" >
+                    <TextBlock VerticalAlignment="Center" Text="#More"/>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

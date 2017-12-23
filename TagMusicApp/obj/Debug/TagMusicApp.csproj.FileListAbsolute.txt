@@ -12,3 +12,4 @@ D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.csproj.Generate
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.csproj.CoreCompileInputs.cache
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.exe
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.pdb
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.csprojResolveAssemblyReference.cache

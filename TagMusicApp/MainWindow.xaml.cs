@@ -23,6 +23,8 @@ namespace TagMusicApp
         public MainWindow()
         {
             InitializeComponent();
+
+            
         }
     }
 }
