@@ -29,5 +29,38 @@
                 </Button>
             </StackPanel>
         </Grid>
+        <ListView x:Name="MusicListBox" Background="{x:Null}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="MusicItemTemplate" Height="50">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Foreground="White" Margin="10, 0"/>
+                        </StackPanel>
+                        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding TotalTimeString}" VerticalAlignment="Center" Foreground="White" Margin="10, 0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding Artist}" VerticalAlignment="Center" Foreground="#596a6d" Margin="10, 0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="#Many #Other # Tags" VerticalAlignment="Center" Foreground="#596a6d" Margin="10, 0"/>
+                            <Button VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#7c9487" >
+                                <TextBlock VerticalAlignment="Center" Text="#More"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
