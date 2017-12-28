@@ -24,6 +24,8 @@ namespace TagMusicApp
         {
             InitializeComponent();
 
+            MusicPlayer.instance = new MusicPlayer();
+
             MusicList musics = new MusicList();
 
             Music ranko = new Music(@"D:\Music\[2012-2017] Cinderella Girls [Console Games]\01. CINDERELLA MASTER Solo\[2012.08.08] CINDERELLA MASTER 006 Kanzaki Ranko\01. Tsubomi Yume Miru Rapsodia ~Alma no Michibiki~.mp3");
@@ -143,7 +145,8 @@ namespace TagMusicApp
         {
             Music music = (sender as Button).DataContext as Music;
 
-            System.Diagnostics.Debug.WriteLine(music.Name);
+            MusicPlayer.instance.SetMusic(music);
+            MusicPlayer.instance.Play();
         }
     }
 }
