@@ -24,13 +24,34 @@ namespace TagMusicApp
         {
             InitializeComponent();
 
-            List<Music> musics = new List<Music>();
+            MusicList musics = new MusicList();
 
-            musics.Add(new Music() { name = "TOKIMEKI 에스컬레이트", artist = "죠가사키 미카", totalTime = new TimeSpan(0, 4, 10)});
+            Music ranko = new Music(@"D:\Music\[2012-2017] Cinderella Girls [Console Games]\01. CINDERELLA MASTER Solo\[2012.08.08] CINDERELLA MASTER 006 Kanzaki Ranko\01. Tsubomi Yume Miru Rapsodia ~Alma no Michibiki~.mp3");
+            Music rika = new Music(@"D:\Music\[2012-2017] Cinderella Girls [Console Games]\01. CINDERELLA MASTER Solo\[2012.04.18] CINDERELLA MASTER 005 Jougasaki Rika\01. DOKIDOKI Rhythm.mp3");
+            Music mika = new Music(@"D:\Music\[2012-2017] Cinderella Girls [Console Games]\01. CINDERELLA MASTER Solo\[2012.08.08] CINDERELLA MASTER 009 Jougasaki Mika\01. TOKIMEKI Escalate.mp3");
+            Music star = new Music(@"D:\Music\임시음원\【アイドルマスター ミリオンライブ！】 流星群.mp3");
+            Music dear = new Music(@"D:\Music\임시음원\바바 코노미 (馬場このみ) - dear....mp3");
+            Music tonarini = new Music(@"D:\Music\임시음원\아즈사 곁에.mp3");
 
-            MusicListBox.ItemsSource = musics;
+            musics.Musics.Add(ranko);
+            musics.Musics.Add(rika);
+            musics.Musics.Add(mika);
+            musics.Musics.Add(star);
+            musics.Musics.Add(dear);
 
-            musics.Add(new Music() { name = "메르헨 데뷔", artist = "아베 나나", totalTime = new TimeSpan(0, 4, 32)});
+            MusicTag cinderella = new MusicTag("신데마스");
+            MusicTag main = new MusicTag("본가마스");
+            MusicTag million = new MusicTag("밀리마스");
+
+            cinderella.AddMusic(ranko);
+            cinderella.AddMusic(rika);
+            cinderella.AddMusic(mika);
+            million.AddMusic(star);
+            million.AddMusic(dear);
+            million.AddMusic(tonarini);
+            main.AddMusic(tonarini);
+
+            MusicListBox.ItemsSource = cinderella.CombineLists(million).Musics;
         }
 
         public Grid GetMusicItem(Music music)
@@ -118,9 +139,11 @@ namespace TagMusicApp
             return result;
         }
 
-        public void tagMoreButton(object sender, RoutedEventArgs e)
+        public void TagMoreButton(object sender, RoutedEventArgs e)
         {
+            Music music = (sender as Button).DataContext as Music;
 
+            System.Diagnostics.Debug.WriteLine(music.Name);
         }
     }
 }

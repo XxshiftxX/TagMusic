@@ -31,7 +31,7 @@ namespace TagMusicApp
             public bool MoveNext()
             {
                 pos++;
-                return pos >= Musics.Count;
+                return pos >= Musics.Count + 1;
             }
 
             public void Reset()
@@ -79,36 +79,36 @@ namespace TagMusicApp
             return isContain;
         }
 
-        public MusicList CombineLists(MusicList list1, MusicList list2)
+        public MusicList CombineLists(MusicList list)
         {
-            MusicList list = new MusicList();
+            MusicList result = new MusicList();
 
-            foreach (Music m in list1)
+            foreach (Music m in list.Musics)
             {
-                list.AddMusic(m);
+                result.AddMusic(m);
             }
-            foreach (Music m in list2)
+            foreach (Music m in Musics)
             {
-                list.AddMusic(m);
+                result.AddMusic(m);
             }
 
-            return list;
+            return result;
         }
 
-        public MusicList ExcludeLists(MusicList list1, MusicList list2)
+        public MusicList ExcludeLists(MusicList list)
         {
-            MusicList list = new MusicList();
+            MusicList result = new MusicList();
 
-            foreach (Music m in list1)
+            foreach (Music m in Musics)
             {
-                list.AddMusic(m);
+                result.AddMusic(m);
             }
-            foreach (Music m in list2)
+            foreach (Music m in list.Musics)
             {
-                list.RemoveMusic(m);
+                result.RemoveMusic(m);
             }
 
-            return list;
+            return result;
         }
     }
 }
