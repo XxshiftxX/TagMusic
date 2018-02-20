@@ -1,0 +1,50 @@
+﻿<Page x:Class="TagMusicApp.AllMusic"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TagMusicApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="AllMusic">
+
+    <Grid>
+        <ListView x:Name="MusicListBox" Grid.Row="1" Background="{x:Null}" Margin="20" BorderThickness="1" MouseDoubleClick="MusicListItem_DoubleClick">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                    </Style.Resources>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="MusicItemTemplate" Height="50">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Foreground="White" Margin="10, 0"/>
+                        </StackPanel>
+                        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding TotalTimeString}" VerticalAlignment="Center" Foreground="White" Margin="10, 0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding Artist}" VerticalAlignment="Center" Foreground="#596a6d" Margin="10, 0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding TagString}" VerticalAlignment="Center" Foreground="#596a6d" Margin="10, 0"/>
+                            <Button VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#7c9487">
+                                <TextBlock VerticalAlignment="Center" Text="#More"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

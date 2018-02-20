@@ -17,3 +17,6 @@ D:\Programing\CSharp\Tag Music\UnitTest\obj\Debug\UnitTest.csprojResolveAssembly
 D:\Programing\CSharp\Tag Music\UnitTest\obj\Debug\UnitTest.csproj.CoreCompileInputs.cache
 D:\Programing\CSharp\Tag Music\UnitTest\obj\Debug\UnitTest.dll
 D:\Programing\CSharp\Tag Music\UnitTest\obj\Debug\UnitTest.pdb
+D:\Programing\CSharp\Tag Music\UnitTest\bin\Debug\CSCore.dll
+D:\Programing\CSharp\Tag Music\UnitTest\bin\Debug\taglib-sharp.dll
+D:\Programing\CSharp\Tag Music\UnitTest\bin\Debug\CSCore.xml

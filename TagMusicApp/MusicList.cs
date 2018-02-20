@@ -7,43 +7,12 @@ using System.Threading.Tasks;
 
 namespace TagMusicApp
 {
-    public class MusicList : IEnumerable
+    public class MusicList : List<Music>
     {
-        public readonly List<Music> Musics = new List<Music>();
-        
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return new MusicListEnumerator(Musics);
-        }
-
-        public class MusicListEnumerator : IEnumerator
-        {
-            List<Music> Musics;
-            int pos = -1;
-
-            public MusicListEnumerator(List<Music> list)
-            {
-                Musics = list;
-            }
-
-            public object Current => Musics[pos];
-
-            public bool MoveNext()
-            {
-                pos++;
-                return pos >= Musics.Count + 1;
-            }
-
-            public void Reset()
-            {
-                pos = -1;
-            }
-        }
-
         public virtual bool AddMusic(Music music)
         {
             bool isContain = false;
-            foreach (Music m in Musics)
+            foreach (Music m in this)
             {
                 if (m.FilePath == music.FilePath)
                 {
@@ -54,7 +23,7 @@ namespace TagMusicApp
 
             if (!isContain)
             {
-                Musics.Add(music);
+                Add(music);
             }
             return isContain;
         }
@@ -62,7 +31,7 @@ namespace TagMusicApp
         public virtual bool RemoveMusic(Music music)
         {
             bool isContain = false;
-            foreach (Music m in Musics)
+            foreach (Music m in this)
             {
                 if (m.FilePath == music.FilePath)
                 {
@@ -73,7 +42,7 @@ namespace TagMusicApp
 
             if (isContain)
             {
-                Musics.Remove(music);
+                Remove(music);
             }
 
             return isContain;
@@ -83,11 +52,11 @@ namespace TagMusicApp
         {
             MusicList result = new MusicList();
 
-            foreach (Music m in list.Musics)
+            foreach (Music m in list)
             {
                 result.AddMusic(m);
             }
-            foreach (Music m in Musics)
+            foreach (Music m in this)
             {
                 result.AddMusic(m);
             }
@@ -99,11 +68,11 @@ namespace TagMusicApp
         {
             MusicList result = new MusicList();
 
-            foreach (Music m in Musics)
+            foreach (Music m in this)
             {
                 result.AddMusic(m);
             }
-            foreach (Music m in list.Musics)
+            foreach (Music m in list)
             {
                 result.RemoveMusic(m);
             }

@@ -7,38 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Background="#2d2d36" MinHeight="600" MinWidth="1200">
     <Grid>
-        <ListView x:Name="MusicListBox" Background="{x:Null}" Margin="20" BorderThickness="1">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid x:Name="MusicItemTemplate" Height="50">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Foreground="White" Margin="10, 0"/>
-                        </StackPanel>
-                        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock Text="{Binding TotalTimeString}" VerticalAlignment="Center" Foreground="White" Margin="10, 0"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding Artist}" VerticalAlignment="Center" Foreground="#596a6d" Margin="10, 0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock Text="{Binding TagString}" VerticalAlignment="Center" Foreground="#596a6d" Margin="10, 0"/>
-                            <Button VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#7c9487" Click="TagMoreButton">
-                                <TextBlock VerticalAlignment="Center" Text="#More"/>
-                            </Button>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        <Frame Background="{x:Null}" x:Name="MainFrame" Grid.Row="1"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="Pause" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Click="Pause_Click">
+                    <TextBlock>Pause</TextBlock>
+                </Button>
+                <Button x:Name="Play" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Click="Play_Click">
+                    <TextBlock>Play</TextBlock>
+                </Button>
+                <Button x:Name="Stop" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Click="Stop_Click">
+                    <TextBlock>Stop</TextBlock>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

@@ -1,0 +1,34 @@
+﻿<Window x:Class="TagMusicApp.TagInfoDialogue"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TagMusicApp"
+        mc:Ignorable="d"
+        Title="TagInfoDialogue" Background="#2d2d36" Height="320" Width="470" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+            <TextBlock x:Name="songNameField" Foreground="#7c9487" Text="ススメ☆オトメ ~jewel parade~ (Cool)" FontSize="10" />
+            <ListView x:Name="TagList" BorderThickness="0" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Background="{x:Null}" Foreground="White" BorderThickness="0">
+                            <TextBlock Text="{Binding}"/>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Rectangle Height="1" Fill="White" Margin="0, 8, 0, 0"/>
+        </StackPanel>
+    </Grid>
+</Window>

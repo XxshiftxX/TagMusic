@@ -1,39 +1,54 @@
-﻿using System;
-using TagMusicApp;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using CSCore;
+using CSCore.CoreAudioAPI;
+using CSCore.Codecs;
+using CSCore.SoundOut;
+using System.Threading;
 
 namespace UnitTest
 {
     [TestClass]
     public class UnitTest1
     {
-        /*
-             * A, B     : tag1
-             * B, C, D  : tag2
-             * A, D, E  : tag3
-             * C        : tag4
-             */
-        MusicTag tag1 = new MusicTag("Tag1");
-        MusicTag tag2 = new MusicTag("Tag2");
-        MusicTag tag3 = new MusicTag("Tag3");
-        MusicTag tag4 = new MusicTag("Tag4");
-        Music musicA = new Music();
-        Music musicB = new Music();
-        Music musicC = new Music();
-        Music musicD = new Music();
-        Music musicE = new Music();
+        private MMDevice _device;
+        private ISoundOut _soundOut = null;
+        private IWaveSource _soundSource = null;
+
+        const string music1 = @"D:\Music\아이마스 컴플리머시기\02. ...In The Name of. ...LOVE.mp3";
+        const string music2 = @"D:\Music\아이마스 컴플리머시기\03. VIVID Imagination.mp3";
+        const string music3 = @"D:\Music\아이마스 컴플리머시기\05. POKER POKER.mp3";
 
         [TestMethod]
-        public void 중복테스트()
+        public void Test()
         {
-            tag1.AddMusic(musicA);
-            tag1.AddMusic(musicA);
-            Assert.AreEqual(tag1.Musics.Count, 1);
+            // Init
+            _device = new MMDeviceEnumerator().EnumAudioEndpoints(DataFlow.Render, DeviceState.Active)[0];
+
+            SetMusic(music1);
+            _soundOut.Play();
+            Thread.Sleep(3000);
+
+            SetMusic(music2);
+            _soundOut.Play();
+            Thread.Sleep(3000);
+
+            SetMusic(music1);
+            _soundOut.Play();
+            Thread.Sleep(3000);
         }
-
-        public void 추가테스트()
+        void SetMusic(string m)
         {
+            if (_soundOut != null)
+            {
+                _soundOut.Dispose();
+                _soundOut = null;
+            }
 
+            _soundSource = CodecFactory.Instance.GetCodec(m);
+
+            _soundOut = new WasapiOut() { Device = _device, Latency = 100 };
+            _soundOut.Initialize(_soundSource);
         }
     }
 }

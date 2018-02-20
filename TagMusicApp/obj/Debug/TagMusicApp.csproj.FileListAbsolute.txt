@@ -18,3 +18,7 @@ D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\policy.2.0.taglib-sharp.dll
 D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\taglib-sharp.dll
 D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\CSCore.xml
 D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\policy.2.0.taglib-sharp.config
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagInfoDialogue.g.cs
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagInfoDialogue.baml
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\AllMusic.g.cs
+D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\AllMusic.baml
