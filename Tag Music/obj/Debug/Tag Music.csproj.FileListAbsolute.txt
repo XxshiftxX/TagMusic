@@ -2,14 +2,18 @@ D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\Tag Music.exe.config
 D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\Tag Music.exe
 D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\Tag Music.pdb
 D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\CSCore.dll
+D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\policy.2.0.taglib-sharp.dll
+D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\taglib-sharp.dll
 D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\CSCore.xml
+D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\policy.2.0.taglib-sharp.config
+D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\MainWindow.g.cs
+D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\App.g.cs
+D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music_MarkupCompile.cache
+D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music_MarkupCompile.lref
+D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\MainWindow.baml
+D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.g.resources
 D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag_Music.Properties.Resources.resources
 D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.csproj.GenerateResource.Cache
 D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.csproj.CoreCompileInputs.cache
 D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.exe
 D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.pdb
-D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\policy.2.0.taglib-sharp.dll
-D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\taglib-sharp.dll
-D:\Programing\CSharp\Tag Music\Tag Music\bin\Debug\policy.2.0.taglib-sharp.config
-D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag_Music.MusicTextbox.resources
-D:\Programing\CSharp\Tag Music\Tag Music\obj\Debug\Tag Music.csprojResolveAssemblyReference.cache

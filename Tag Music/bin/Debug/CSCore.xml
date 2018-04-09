@@ -1754,6 +1754,29 @@
             Default value.
             </summary>
         </member>
+        <member name="T:CSCore.Codecs.FLAC.DefaultFlacMetadata">
+            <summary>
+            The default implementation of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> class for <see cref="T:CSCore.Codecs.FLAC.FlacMetaDataType"/> 
+            with no specific implemetation.
+            </summary>
+        </member>
+        <member name="M:CSCore.Codecs.FLAC.DefaultFlacMetadata.#ctor(CSCore.Codecs.FLAC.FlacMetaDataType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> class.
+            </summary>
+            <param name="metadataType">The type of the metadata.</param>
+        </member>
+        <member name="M:CSCore.Codecs.FLAC.DefaultFlacMetadata.InitializeByStream(System.IO.Stream)">
+            <summary>
+            Initializes the properties of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> by reading them from the <paramref name="stream"/>.
+            </summary>
+            <param name="stream">The stream which contains the metadata.</param>
+        </member>
+        <member name="P:CSCore.Codecs.FLAC.DefaultFlacMetadata.MetaDataType">
+            <summary>
+            Gets the type of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/>.
+            </summary>
+        </member>
         <member name="T:CSCore.Codecs.FLAC.FlacMetadata">
             <summary>
             Represents a flac metadata block.
@@ -1779,13 +1802,19 @@
             </summary>
             <param name="stream">The stream which contains the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/>.</param>
         </member>
-        <member name="M:CSCore.Codecs.FLAC.FlacMetadata.#ctor(CSCore.Codecs.FLAC.FlacMetaDataType,System.Boolean,System.Int32)">
+        <member name="M:CSCore.Codecs.FLAC.FlacMetadata.Initialize(System.IO.Stream,System.Int32,System.Boolean)">
             <summary>
-            Initializes a new instance of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> class.
+            Initializes the properties of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/>.
             </summary>
-            <param name="type">The type of the metadata.</param>
-            <param name="lastBlock">A value which indicates whether this is the last <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> block inside of the stream. <c>true</c> means that this is the last <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> block inside of the stream.</param>
+            <param name="stream">The stream which contains the metadata.</param>
             <param name="length">The length of <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> block inside of the stream in bytes. Does not include the metadata header.</param>
+            <param name="isLastBlock">A value which indicates whether this is the last <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> block inside of the stream. <c>true</c> means that this is the last <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> block inside of the stream.</param>
+        </member>
+        <member name="M:CSCore.Codecs.FLAC.FlacMetadata.InitializeByStream(System.IO.Stream)">
+            <summary>
+            Initializes the properties of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> by reading them from the <paramref name="stream"/>.
+            </summary>
+            <param name="stream">The stream which contains the metadata.</param>
         </member>
         <member name="P:CSCore.Codecs.FLAC.FlacMetadata.MetaDataType">
             <summary>
@@ -1803,18 +1832,42 @@
             </summary>
             <remarks>The length does not include the metadata header.</remarks>
         </member>
+        <member name="T:CSCore.Codecs.FLAC.Metadata.FlacMetadataFactory">
+            <summary>
+            Flac metadata factory.
+            </summary>
+        </member>
+        <member name="P:CSCore.Codecs.FLAC.Metadata.FlacMetadataFactory.Instance">
+            <summary>
+            Gets the default factory instance.
+            </summary>
+        </member>
+        <member name="M:CSCore.Codecs.FLAC.Metadata.FlacMetadataFactory.RegistermetadataType``1(CSCore.Codecs.FLAC.FlacMetaDataType)">
+            <summary>
+            Registers a new <see cref="T:CSCore.Codecs.FLAC.FlacMetaDataType"/>.
+            </summary>
+            <param name="metadataType">The <see cref="T:CSCore.Codecs.FLAC.FlacMetaDataType"/>.</param>
+            <typeparam name="T">The <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> object assigned to the <paramref name="metadataType"/>.</typeparam>
+        </member>
+        <member name="M:CSCore.Codecs.FLAC.Metadata.FlacMetadataFactory.RegistermetadataType``1(System.Int32)">
+            <summary>
+            Registers a new <see cref="T:CSCore.Codecs.FLAC.FlacMetaDataType"/>.
+            </summary>
+            <param name="metadataType">The metadata type as an integer.</param>
+            <typeparam name="T">The <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> object assigned to the <paramref name="metadataType"/>.</typeparam>
+        </member>
+        <member name="M:CSCore.Codecs.FLAC.Metadata.FlacMetadataFactory.ParseMetadata(System.IO.Stream)">
+            <summary>
+            Reads and returns a single <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> from the specified <paramref name="stream"/>.
+            </summary>
+            <param name="stream">The stream which contains the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/>.</param>
+            <returns>Returns the read <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/>.</returns>
+            <exception cref="T:CSCore.Codecs.FLAC.FlacException">Could not read metadata.</exception>
+        </member>
         <member name="T:CSCore.Codecs.FLAC.FlacMetadataSeekTable">
             <summary>
             Represents a flac seektable.
             </summary>
-        </member>
-        <member name="M:CSCore.Codecs.FLAC.FlacMetadataSeekTable.#ctor(System.IO.Stream,System.Int32,System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadataSeekTable"/> class.
-            </summary>
-            <param name="stream">The stream which contains the seektable.</param>
-            <param name="length">The length of the seektable inside of the stream in bytes. Does not include the metadata header.</param>
-            <param name="lastBlock">A value which indicates whether this is the last <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> block inside of the stream. <c>true</c> means that this is the last <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> block inside of the stream.</param>
         </member>
         <member name="P:CSCore.Codecs.FLAC.FlacMetadataSeekTable.EntryCount">
             <summary>
@@ -1836,21 +1889,32 @@
             <param name="index">The index.</param>
             <returns>The <see cref="T:CSCore.Codecs.FLAC.FlacSeekPoint"/> at the specified <paramref name="index"/>.</returns>
         </member>
+        <member name="M:CSCore.Codecs.FLAC.FlacMetadataSeekTable.InitializeByStream(System.IO.Stream)">
+            <summary>
+            Initializes the properties of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> by reading them from the <paramref name="stream"/>.
+            </summary>
+            <param name="stream">The stream which contains the metadata.</param>
+        </member>
+        <member name="P:CSCore.Codecs.FLAC.FlacMetadataSeekTable.MetaDataType">
+            <summary>
+            Gets the type of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/>.
+            </summary>
+        </member>
         <member name="T:CSCore.Codecs.FLAC.FlacMetadataStreamInfo">
             <summary>
                 Represents the streaminfo metadata flac which provides general information about the flac stream.
             </summary>
         </member>
-        <member name="M:CSCore.Codecs.FLAC.FlacMetadataStreamInfo.#ctor(System.IO.Stream,System.Int32,System.Boolean)">
+        <member name="M:CSCore.Codecs.FLAC.FlacMetadataStreamInfo.InitializeByStream(System.IO.Stream)">
             <summary>
-                Initializes a new instance of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadataStreamInfo" /> class.
+            Initializes the properties of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/> by reading them from the <paramref name="stream"/>.
             </summary>
-            <param name="stream">The stream which contains the <see cref="T:CSCore.Codecs.FLAC.FlacMetadataStreamInfo"/>.</param>
-            <param name="length">The length of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadataStreamInfo"/> inside of the stream in bytes. Does not include the metadata header.</param>
-            <param name="lastBlock">
-                A value which indicates whether this is the last <see cref="T:CSCore.Codecs.FLAC.FlacMetadata" /> block inside of
-                the stream. <c>true</c> means that this is the last <see cref="T:CSCore.Codecs.FLAC.FlacMetadata" /> block inside of the stream.
-            </param>
+            <param name="stream">The stream which contains the metadata.</param>
+        </member>
+        <member name="P:CSCore.Codecs.FLAC.FlacMetadataStreamInfo.MetaDataType">
+            <summary>
+            Gets the type of the <see cref="T:CSCore.Codecs.FLAC.FlacMetadata"/>.
+            </summary>
         </member>
         <member name="P:CSCore.Codecs.FLAC.FlacMetadataStreamInfo.MinBlockSize">
             <summary>
@@ -6579,6 +6643,31 @@
             <param name="dataFlow">The data-flow direction for the endpoint device.</param>
             <param name="stateMask">The state or states of the endpoints that are to be included in the collection.</param>
             <returns><see cref="T:CSCore.CoreAudioAPI.MMDeviceCollection"/> which contains the enumerated devices.</returns>
+        </member>
+        <member name="E:CSCore.CoreAudioAPI.MMDeviceEnumerator.DeviceStateChanged">
+            <summary>
+            Occurs when the state of an audio endpoint device has changed.
+            </summary>
+        </member>
+        <member name="E:CSCore.CoreAudioAPI.MMDeviceEnumerator.DeviceAdded">
+            <summary>
+            Occurs when a new audio endpoint device has been added.
+            </summary>
+        </member>
+        <member name="E:CSCore.CoreAudioAPI.MMDeviceEnumerator.DeviceRemoved">
+            <summary>
+            Occurs when an audio endpoint device has been removed.
+            </summary>
+        </member>
+        <member name="E:CSCore.CoreAudioAPI.MMDeviceEnumerator.DefaultDeviceChanged">
+            <summary>
+            Occurs when the default audio endpoint device for a particular device role has changed.
+            </summary>
+        </member>
+        <member name="E:CSCore.CoreAudioAPI.MMDeviceEnumerator.DevicePropertyChanged">
+            <summary>
+            Occurs when the value of a property belonging to an audio endpoint device has changed.
+            </summary>
         </member>
         <member name="M:CSCore.CoreAudioAPI.MMDeviceEnumerator.#ctor">
             <summary>

@@ -3,16 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tag Music", "Tag Music\Tag Music.csproj", "{075D83EB-11B7-4DA9-93EC-056388602DEE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{D023DB53-D0E9-496B-A284-166AA50FF150}"
-	ProjectSection(ProjectDependencies) = postProject
-		{075D83EB-11B7-4DA9-93EC-056388602DEE} = {075D83EB-11B7-4DA9-93EC-056388602DEE}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagMusicApp", "TagMusicApp\TagMusicApp.csproj", "{E9B3A656-556D-4342-A48C-FDB425F72443}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tag Music", "Tag Music\Tag Music.csproj", "{27939774-2059-4383-B41A-DB3162AD494E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{075D83EB-11B7-4DA9-93EC-056388602DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{075D83EB-11B7-4DA9-93EC-056388602DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{075D83EB-11B7-4DA9-93EC-056388602DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{075D83EB-11B7-4DA9-93EC-056388602DEE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D023DB53-D0E9-496B-A284-166AA50FF150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D023DB53-D0E9-496B-A284-166AA50FF150}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D023DB53-D0E9-496B-A284-166AA50FF150}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,6 +29,10 @@ Global
 		{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E75C3201-D8F0-41BE-A6EE-6FFF7D35D69B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27939774-2059-4383-B41A-DB3162AD494E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27939774-2059-4383-B41A-DB3162AD494E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27939774-2059-4383-B41A-DB3162AD494E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27939774-2059-4383-B41A-DB3162AD494E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
