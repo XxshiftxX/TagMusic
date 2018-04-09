@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Programing\CSharp\Tag Music\WpfApp1\obj\Debug\
+D:\dev\TagMusic\WpfApp1\obj\Debug\
 WpfApp1
 none
 false
 DEBUG;TRACE
-D:\Programing\CSharp\Tag Music\WpfApp1\App.xaml
+D:\dev\TagMusic\WpfApp1\App.xaml
 31554102677
 
-81221281852
-16-403823703
+12-811858067
+162085515047
 Lab.xaml;MainWindow.xaml;TagAddWindow.xaml;
 
-False
+True
 

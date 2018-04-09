@@ -4,13 +4,18 @@
 winexe
 C#
 .cs
-D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\
+D:\dev\TagMusic\TagMusicApp\obj\Debug\
 TagMusicApp
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 D:\Programing\CSharp\Tag Music\TagMusicApp\App.xaml
 3-1164946856
+=======
+D:\dev\TagMusic\TagMusicApp\App.xaml
+11151548125
+>>>>>>> g
 
 11-246075260
 162024791295

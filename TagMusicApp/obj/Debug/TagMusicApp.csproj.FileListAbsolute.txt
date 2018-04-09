@@ -13,12 +13,33 @@ D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.csproj.CoreComp
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.exe
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.pdb
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagMusicApp.csprojResolveAssemblyReference.cache
+<<<<<<< Updated upstream
 D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\CSCore.dll
 D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\policy.2.0.taglib-sharp.dll
 D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\taglib-sharp.dll
 D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\CSCore.xml
 D:\Programing\CSharp\Tag Music\TagMusicApp\bin\Debug\policy.2.0.taglib-sharp.config
+<<<<<<< HEAD
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagInfoDialogue.g.cs
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\TagInfoDialogue.baml
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\AllMusic.g.cs
 D:\Programing\CSharp\Tag Music\TagMusicApp\obj\Debug\AllMusic.baml
+=======
+=======
+D:\dev\TagMusic\TagMusicApp\bin\Debug\TagMusicApp.exe.config
+D:\dev\TagMusic\TagMusicApp\bin\Debug\TagMusicApp.exe
+D:\dev\TagMusic\TagMusicApp\bin\Debug\TagMusicApp.pdb
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp.csprojResolveAssemblyReference.cache
+D:\dev\TagMusic\TagMusicApp\obj\Debug\MainWindow.g.cs
+D:\dev\TagMusic\TagMusicApp\obj\Debug\App.g.cs
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp_MarkupCompile.cache
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp_MarkupCompile.lref
+D:\dev\TagMusic\TagMusicApp\obj\Debug\MainWindow.baml
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp.g.resources
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp.Properties.Resources.resources
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp.csproj.GenerateResource.Cache
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp.csproj.CoreCompileInputs.cache
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp.exe
+D:\dev\TagMusic\TagMusicApp\obj\Debug\TagMusicApp.pdb
+>>>>>>> Stashed changes
+>>>>>>> g
