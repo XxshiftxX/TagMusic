@@ -38,9 +38,12 @@ namespace Tag_Music
                 new Music("마음 플로트", "Yunomi", "Nicamoq", "j_edm", "JPN")
             };
 
-            var processed = MusicListBuilder.GetMusiclist(list, new string[] { "JPN", "볼빨간사춘기" }, new string[] { "코바야카와_사에" }).Select(x => x.name);
+            var processed = MusicListBuilder.GetMusiclist(list, new string[] { "JPN", "볼빨간사춘기" }, new string[] { "코바야카와_사에" }).Select(x => x.Name);
+
             foreach(string s in processed)
                 System.Diagnostics.Debug.WriteLine(s);
+
+            MusicPlayer.Play();
         }
     }
 }
