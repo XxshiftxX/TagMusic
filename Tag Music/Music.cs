@@ -12,25 +12,19 @@ namespace Tag_Music
 
         private File musicFile;
 
-        private string name = null;
+        public string name;
 
         public string Name
         {
             get
             {
-                if (name != null)
-                    return name;
-
                 if (musicFile.Tag.Title == null)
-                    return System.IO.Path.GetFileName(FilePath);
+                    return FilePath.Split('\\')[FilePath.Split('\\').Length - 1];
 
                 return musicFile.Tag.Title;
             }
-
-            set
-            {
-                name = value;
-            }
+            // 밑 코드는 추후 없앨 것
+            private set => name = value;
         }
 
         public string Artist
@@ -66,14 +60,13 @@ namespace Tag_Music
                 return temp;
             }
         }
-
+        /*
         public Music(string path)
         {
             FilePath = path;
             musicFile = File.Create(path);
         }
-
-        // For Test
+        */
         public Music(string name, params string[] tags)
         {
             Name = name;
