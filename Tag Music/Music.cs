@@ -18,10 +18,13 @@ namespace Tag_Music
         {
             get
             {
+                return name;
+                /*
                 if (musicFile.Tag.Title == null)
                     return FilePath.Split('\\')[FilePath.Split('\\').Length - 1];
 
                 return musicFile.Tag.Title;
+                */
             }
             // 밑 코드는 추후 없앨 것
             private set => name = value;

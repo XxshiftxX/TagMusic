@@ -22,9 +22,7 @@ namespace Tag_Music
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-            Music[] list = new Music[10] 
+            Music[] list = new Music[10]
             {
                 new Music("Heal me", "*luna", "j_edm", "vocaloid", "JPN"),
                 new Music("Tell me", "*luna", "j_edm", "vocaloid", "JPN"),
@@ -39,8 +37,10 @@ namespace Tag_Music
             };
 
             var processed = MusicListBuilder.GetMusiclist(list, new string[] { "JPN", "볼빨간사춘기" }, new string[] { "코바야카와_사에" }).Select(x => x.name);
-            foreach(string s in processed)
-                System.Diagnostics.Debug.WriteLine(s);
+
+            InitializeComponent();
+
+            //MusicListBox.ItemsSource = processed;
         }
     }
 }

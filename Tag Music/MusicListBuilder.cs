@@ -11,6 +11,7 @@ namespace Tag_Music
         public static IEnumerable<Music> GetMusiclist(IEnumerable<Music> list, string[] sumTag, string[] subTag)
         {
             IEnumerable<Music> result = list;
+
             result = result.Where(x =>
             {
                 foreach (string tag in x.Tags)
@@ -19,12 +20,14 @@ namespace Tag_Music
                 }
                 return false;
             });
+
             foreach (var tag in subTag)
             {
                 result = from music in result
                          where !music.Tags.Contains(tag)
                          select music;
             }
+
             return result;
         }
     }
