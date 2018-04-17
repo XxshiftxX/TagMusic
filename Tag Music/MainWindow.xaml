@@ -5,64 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tag_Music"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" MinHeight="600" MinWidth="900">
+    <Window.Resources>
+        <local:DateConverter x:Key="IndexConverter"/>
+    </Window.Resources>
     <Grid>
-        <DockPanel Height="65">
-            <TextBlock Width="30" Text="1" FontSize="20" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Rectangle Width="50" Height="50" Fill="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0,10 ,0"/>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Heal me" FontSize="20"/>
-                <TextBlock Grid.Row="1" Text="*Luna feat.この子" />
-                <ListBox Grid.Row="2" BorderThickness="0">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" VerticalAlignment="Top"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <Button VerticalAlignment="Center" Background="Transparent" BorderThickness="0">
-                        <Button.Content>
-                            <Border CornerRadius="7" Background="#0A0A0A">
-                                <TextBlock Margin="10,0" Foreground="White">*Luna</TextBlock>
-                            </Border>
-                        </Button.Content>
-                    </Button>
-                    <Button VerticalAlignment="Center" Background="Transparent" BorderThickness="0">
-                        <Button.Content>
-                            <Border CornerRadius="7" Background="#0A0A0A">
-                                <TextBlock Margin="10,0" Foreground="White">J__EDM</TextBlock>
-                            </Border>
-                        </Button.Content>
-                    </Button>
-                    <Button VerticalAlignment="Center" Background="Transparent" BorderThickness="0">
-                        <Button.Content>
-                            <Border CornerRadius="7" Background="#0A0A0A">
-                                <TextBlock Margin="10,0" Foreground="White">Vocaloid</TextBlock>
-                            </Border>
-                        </Button.Content>
-                    </Button>
-                    <Button VerticalAlignment="Center" Background="Transparent" BorderThickness="0">
-                        <Button.Content>
-                            <Border CornerRadius="7" Background="#0A0A0A">
-                                <TextBlock Margin="10,0" Foreground="White">...</TextBlock>
-                            </Border>
-                        </Button.Content>
-                    </Button>
-                </ListBox>
-            </Grid>
-        </DockPanel>
-        <!--
-        <ListBox x:Name="MusicListBox" ItemsSource="{Binding}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="1" Source="/MusicListView.xaml"/>
     </Grid>
 </Window>
