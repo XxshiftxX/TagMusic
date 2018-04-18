@@ -7,8 +7,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       ShowsNavigationUI="False"
+      Name="musicListView"
       Title="MusicListView">
-
+    <Page.Resources>
+        <local:WidthConverter x:Key="widthConverter"/>
+    </Page.Resources>
     <Grid>
         <ListBox x:Name="MusicListBox" ItemsSource="{Binding}">
             <ListBox.ItemContainerStyle>
@@ -19,10 +22,10 @@
                             <ControlTemplate TargetType="ListBoxItem">
                                 <Grid Background="{TemplateBinding Background}">
                                     <ContentPresenter
-                                                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                            Content="{TemplateBinding Content}"
-                                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                            Margin="{TemplateBinding Padding}" />
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}" />
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>
@@ -32,16 +35,11 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Height="65">
-                        <Rectangle Width="50" Height="50" Fill="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0,10 ,0"/>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="3*"/>
-                                <RowDefinition Height="2*"/>
-                                <RowDefinition Height="3*"/>
-                            </Grid.RowDefinitions>
+                        <Rectangle Width="50" Height="50" Fill="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 ,0"/>
+                        <StackPanel>
                             <TextBlock Grid.Row="0" Text="{Binding Path=Name}" FontSize="20"/>
                             <TextBlock Grid.Row="1" Text="*Luna feat.この子" />
-                            <ListBox Grid.Row="2" BorderThickness="0" Background="Transparent" ItemsSource="{Binding Path=SimpleTags}">
+                            <ListBox Grid.Row="2" BorderThickness="0" Background="Transparent" ItemsSource="{Binding Path=Tags}" Width="{Binding ElementName=musicListView, Path=ActualWidth, Converter={StaticResource widthConverter}, ConverterParameter=1.2}">
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="ListBoxItem">
                                         <Setter Property="Template">
@@ -61,7 +59,7 @@
                                 </ListBox.ItemContainerStyle>
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" VerticalAlignment="Top"/>
+                                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate>
@@ -72,7 +70,7 @@
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
-                        </Grid>
+                        </StackPanel>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
